@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="text-center top-space">
+    <div class="row pb-5">
+        <h1 class="mx-auto">{{project}}</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card shadow p-3">
+                    <form method="post" action="{{url}}">
+                        {% csrf_token %}
+                        <div class="form-floating mb-3">
+                            {{form.name}}
+                            <label for="{{form.name.id_for_label}}">{{form.name.label}}</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{form.priority}}
+                            <label for="{{form.priority.id_for_label}}">{{form.priority.label}}</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{form.status}}
+                            <label for="{{form.status.id_for_label}}">{{form.status.label}}</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{form.created}}
+                            <label for="{{form.created.id_for_label}}">{{form.created.label}}</label>
+                        </div>
+                        <div class="position-relative container col-3 pt-3">
+                            <button type="submit" class=" mx-auto btn btn-success">Add Task</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

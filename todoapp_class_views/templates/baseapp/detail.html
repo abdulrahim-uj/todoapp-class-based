@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="text-center top-space">
+    <div class="row pb-5">
+        <h1 class="mx-auto">{{project}}</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card shadow p-3">
+                    <div class="form-floating mb-3">
+                        <p class="form-control" id="id_name">{{task.name}}</p>
+                        <label for="id_name">Task</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        {% if task.priority == 1 %}
+                        <p class="form-control badge bg-danger" id="id_priority">High priority</p>
+                        {% elif task.priority == 2 %}
+                        <p class="form-control badge bg-warning" id="id_priority">Middle priority</p>
+                        {% elif task.priority == 3 %}
+                        <p class="form-control badge bg-success" id="id_priority">Low priority</p>
+                        {% endif %}
+                        <label class="badge" for="id_priority">Priority</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        {% if task.status == 1 %}
+                        <p class="form-control badge bg-success" id="id_status">Completed</p>
+                        {% elif task.status == 2 %}
+                        <p class="form-control badge bg-info" id="id_status">Working</p>
+                        {% elif task.status == 3 %}
+                        <p class="form-control badge bg-danger" id="id_status">Pending</p>
+                        {% endif %}
+                        <label class="badge" for="id_status">Status</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <p class="form-control" id="id_created">{{task.created}}</p>
+                        <label for="id_created">Date</label>
+                    </div>
+                    <div class="position-relative container pt-3">
+                        <a href="{% url 'baseapp:update_view' pk=task.pk %}"
+                                  type="button" class="mx-auto btn btn-warning">Edit</a>
+                        <a href="{% url 'baseapp:delete_view' pk=task.pk %}"
+                                  type="button" class="mx-auto btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
